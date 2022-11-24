@@ -12,12 +12,6 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 @Repository("EgovMainDAO")
 public class EgovMainDAOImpl extends EgovAbstractMapper implements EgovMainDAO {
-
-    @Override
-    public List<EgovMap> getIntteClsList(IntteVO vo) throws Exception {
-        return selectList("EgovMainDAO.selectIntteClsList", vo);
-    }
-
     @Override
     public List<EgovMap> getIntteList() throws Exception {
         return selectList("EgovMainDAO.selectIntteList");
@@ -33,5 +27,11 @@ public class EgovMainDAOImpl extends EgovAbstractMapper implements EgovMainDAO {
 		
 		return selectList("EgovMainDAO.selectList",vo);
 	}
+	
+    @Override
+    public List<EgovMap> getIntteClsList(IntteVO vo) throws Exception {
+        return selectList("EgovMainDAO.selectIntteClsList", vo);
+    }
+
 
 }

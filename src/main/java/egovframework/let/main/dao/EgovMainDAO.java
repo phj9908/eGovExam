@@ -9,11 +9,11 @@ import egovframework.rte.psl.dataaccess.util.EgovMap;
 
 public interface EgovMainDAO {
 
-    public List<EgovMap> getIntteClsList(IntteVO vo) throws Exception;
-
     public List<EgovMap> getIntteList() throws Exception;
 
     public EgovMap getUserInfo(IntteMbrVO vo) throws Exception;
     
     public List<ListVO> getList(ListVO vo) throws Exception;
+    
+    public List<EgovMap> getIntteClsList(IntteVO vo) throws Exception;
 }
