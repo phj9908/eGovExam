@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="EgovMainDAO">
+
+    <select id="selectIntteClsList" parameterType="IntteVO" resultType="EgovMap">
+        SELECT A.intte_seq,
+               A.cls_seq,
+               A.cls_nm
+        FROM tb_intte_cls A
+            INNER JOIN tb_intte B ON A.intte_seq = B.intte_seq AND B.use_yn = 'Y'
+        WHERE A.intte_seq = #{intteSeq}
+            AND A.cls_seq = #{clsSeq}
+    </select>
+
+    <select id="selectIntteList" resultType="EgovMap">
+        SELECT intte_seq,
+               intte_nm
+        FROM tb_intte
+        WHERE use_yn = 'Y'
+        
+    </select>
+
+    <select id="selectIntteMbr" parameterType="IntteMbrVO" resultType="EgovMap">
+        SELECT *
+        FROM tb_intte_mbr A
+            INNER JOIN tb_intte B ON A.intte_seq = B.intte_seq AND B.use_yn = 'Y'
+        WHERE A.intte_seq = #{intteSeq}
+            AND A.intte_mbr_id = #{intteMbrId}
+    </select>
+    
+    <select id="selectList" resultType="ListVO">
+        SELECT cls_nm, subj_nm, cls_st_date, cls_fns_date, CASE WHEN use_yn = 'Y' THEN '사용' WHEN use_yn = 'N' THEN '미사용' ELSE NULL END AS use_yn, cret_dt
+                
+        FROM tb_intte_cls
+        WHERE intte_seq=#{intteSeq}
+        
+        
+        
+        <if test="searchCnd==1">
+          AND  cls_nm LIKE CONCAT ('%', #{searchWrd},'%')
+        </if>
+        
+        <if test="searchCnd == 2">
+          AND  subj_nm LIKE CONCAT ('%', #{searchWrd},'%')
+        
+        </if>
+        
+        <if test="searchCnd == 0">
+          AND (
+               cls_nm LIKE CONCAT ('%', #{searchWrd},'%')
+               OR
+               subj_nm LIKE CONCAT ('%', #{searchWrd},'%')
+              )
+        </if>
+    
+    </select>
+
+</mapper>
