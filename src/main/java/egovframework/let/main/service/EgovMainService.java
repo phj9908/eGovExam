@@ -16,5 +16,5 @@ public interface EgovMainService {
     public EgovMap getUserInfo(IntteMbrVO vo) throws Exception;
     
     public List<ListVO> getList(ListVO vo) throws Exception;
-
+<!--수정 -->
 }
